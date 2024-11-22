@@ -75,8 +75,11 @@ publisher:
 # │ property below.                                                                                │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 menu:
-  Home: index.html
-  Artifacts: artifacts.html
+  IG Home: index.html
+  Test scripts used in TouchStone: testscripts.html
+  Test examples for test protocol: testexamples.html # if relevant
+  Artifacts Summary: artifacts.html
+  Download: downloads.html
 
 # ╭───────────────────────────Less Common Implementation Guide Properties──────────────────────────╮
 # │  Uncomment the properties below to configure additional properties on the ImplementationGuide  │

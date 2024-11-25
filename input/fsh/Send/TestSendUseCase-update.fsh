@@ -1,5 +1,5 @@
 //RE_STAA
-Instance: HospitalNotification_TestScript_RE_STAA
+Instance: ConditionList_TestScript_RE_STAA
 InstanceOf: TestScript
 * insert Metadata
 * id = "hospitalnotification-send-re-staa"

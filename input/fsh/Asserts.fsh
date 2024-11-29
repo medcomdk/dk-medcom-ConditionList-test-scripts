@@ -183,3 +183,9 @@ RuleSet: assertEncounterLeapYear
 * test[=].action[=].assert.operator = #notFound
 * test[=].action[=].assert.value = "{deceased}"
 * test[=].action[=].assert.warningOnly = false */
+
+RuleSet: assertConditionCodeExists
+* test[=].action[+].assert.description = "Confirm that the conditionCode exists"
+* test[=].action[=].assert.direction = #request // request fordi der testes på det vi sender til serveren, ikke hvad vi modtager
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.31').exists()"
+* test[=].action[=].assert.warningOnly = false

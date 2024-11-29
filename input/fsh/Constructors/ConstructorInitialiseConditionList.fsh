@@ -11,7 +11,7 @@ Definerer i dette tilfælde at det er en fhir-Client der sender noget til en fhi
 Beskriver den profil, der valideres op mod
 Bruges til at lave validate kald til fhir-server
 */
-* insert profileMedComConditionListBundle
+* insert profileMedComConditionList
 
 
 * insert fixtureCreateMessage({fixture_path}, {type}, {number})
@@ -20,11 +20,14 @@ Bruges til at lave validate kald til fhir-server
 
 
 
-//* insert variableMessageHeaderId({type})
 
 // lav en ConditionList
 * insert operationCreateConditionList({type},{number})
 
 
+/*
+Insert asserts
+*/
 
+* insert assertConditionCodeExists
 

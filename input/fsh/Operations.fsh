@@ -9,7 +9,7 @@ RuleSet: operationCreateConditionList(type,number)
 * test[=].action[=].operation.destination = 1
 * test[=].action[=].operation.encodeRequestUrl = true
 * test[=].action[=].operation.origin = 1
-//* test[=].action[=].operation.responseId = "create-message-{type}"
+* test[=].action[=].operation.responseId = "create-message-{type}"
 * test[=].action[=].operation.sourceId = "create-{type}-{number}" 
 
 /*

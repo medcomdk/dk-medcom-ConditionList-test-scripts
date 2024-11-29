@@ -1,4 +1,4 @@
-RuleSet: profileMedComConditionListBundle
+RuleSet: profileMedComConditionList
 //* profile.id = "hospitalnotification" //TODO change name
 //* profile.reference = "http://medcomfhir.dk/ig/hospitalnotification/StructureDefinition/medcom-hospitalNotification-message" 
 // IG: https://build.fhir.org/ig/medcomdk/dk-medcom-conditionlist/StructureDefinition-medcom-conditionlist-bundle.html

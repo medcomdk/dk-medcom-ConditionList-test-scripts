@@ -7,4 +7,11 @@ Description: "Send: Create, validate and send a Conditionlist"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/Conditionlist-testscript-send-01"
 * name = "ConditionListTestScript"
 
-* insert InitialzeConditionList
+* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList/CLBundle/fixtures/fixtures.json)
+
+
+
+
+
+// * insert assertResponseCodeTest
+// * insert assertPayload

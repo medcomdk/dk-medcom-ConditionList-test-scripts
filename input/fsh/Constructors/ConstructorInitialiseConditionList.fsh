@@ -28,6 +28,7 @@ ligesom validate kald til fhir-server
 /*
 Insert asserts
 */
-
+* insert assertResponseCodeTest
 * insert assertConditionCodeExists
+* insert assertValidConditionList
 

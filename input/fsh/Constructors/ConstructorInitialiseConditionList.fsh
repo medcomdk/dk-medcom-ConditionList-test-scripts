@@ -8,8 +8,8 @@ Definerer i dette tilfælde at det er en fhir-Client der sender noget til en fhi
 * insert destinationServer
 
 /* 
-Beskriver den profil, der valideres op mod
-Bruges til at lave validate kald til fhir-server
+Beskriver den profil, der valideres op mod.
+ligesom validate kald til fhir-server
 */
 * insert profileMedComConditionList
 

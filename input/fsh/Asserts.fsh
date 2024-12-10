@@ -196,3 +196,9 @@ RuleSet: assertValidConditionList
 * test[=].action[=].assert.direction = #request
 * test[=].action[=].assert.validateProfileId = "MedComConditionListBundle"
 * test[=].action[=].assert.warningOnly = false
+
+RuleSet: assertBundleTimestampNotEqualToCompositionDate
+* test[=].action[+].assert.description = "Validate the bundle.timestamp is different from composition.date"
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.timestamp != Bundle.entry.resource.ofType(Composition).date"
+* test[=].action[=].assert.warningOnly = false

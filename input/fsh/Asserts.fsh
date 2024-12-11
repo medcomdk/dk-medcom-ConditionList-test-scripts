@@ -202,3 +202,10 @@ RuleSet: assertBundleTimestampNotEqualToCompositionDate
 * test[=].action[=].assert.direction = #request
 * test[=].action[=].assert.expression = "Bundle.timestamp != Bundle.entry.resource.ofType(Composition).date"
 * test[=].action[=].assert.warningOnly = false
+
+// 
+RuleSet: assertonsetDateTimeBeforeAbatementDateTime 
+* test[=].action[+].assert.description = "Validate the onsetDateTime is before the AbatementDateTime"
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(abatement).where(onset > abatement).exists().not()"
+* test[=].action[=].assert.warningOnly = false

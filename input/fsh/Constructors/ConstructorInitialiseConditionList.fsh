@@ -1,34 +1,22 @@
 RuleSet: InitialzeConditionList(type, number, fixture_path)
-//* insert fixtureCreateMessage({fixture}, {type}, {number})
+
+
 /*
-Definerer hvilket type server der skal sende og modtage beskeden i testen. 
-Definerer i dette tilfælde at det er en fhir-Client der sender noget til en fhir-server. 
+Defines which type of server should send and receive the message in the test.
+In this case, it defines that it is a FHIR client sending something to a FHIR server.
 */
+
 * insert originClient
 * insert destinationServer
 
 /* 
-Beskriver den profil, der valideres op mod.
-ligesom validate kald til fhir-server
+Describes the profile that is validated against.
+Similar to the validate call to the FHIR server.
 */
 * insert profileMedComConditionList
 
 
 * insert fixtureCreateMessage({fixture_path}, {type}, {number})
 
-
-
-
-
-
-// lav en ConditionList
+// create operation for the posting of ConditionList
 * insert operationCreateConditionList({type},{number})
-
-
-/*
-Insert asserts
-*/
-* insert assertResponseCodeTest
-* insert assertConditionCodeExists
-* insert assertValidConditionList
-

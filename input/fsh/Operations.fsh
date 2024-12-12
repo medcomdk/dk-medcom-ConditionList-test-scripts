@@ -1,6 +1,6 @@
 RuleSet: operationCreateConditionList(type,number)
 * test[+].id = "ConditionList-create-{type}-{number}" // Update hospitalnotification
-* test[=].name = "Create a ConditionList {type} Message {number}" 
+* test[=].name = "Create a ConditionList with multiple different conditions {number}" 
 * test[=].description = "Post ConditionList to the server." 
 * test[=].action[+].operation.type.system = "http://terminology.hl7.org/CodeSystem/testscript-operation-codes"
 * test[=].action[=].operation.type.code = #create
@@ -9,7 +9,7 @@ RuleSet: operationCreateConditionList(type,number)
 * test[=].action[=].operation.destination = 1
 * test[=].action[=].operation.encodeRequestUrl = true
 * test[=].action[=].operation.origin = 1
-//* test[=].action[=].operation.responseId = "create-message-{type}"
+// * test[=].action[=].operation.responseId = "create-message-{type}"
 * test[=].action[=].operation.sourceId = "create-{type}-{number}" 
 
 /*
@@ -27,17 +27,6 @@ RuleSet: operationCreateMessage(type, number)
 * test[=].action[=].operation.responseId = "create-message-{type}"
 * test[=].action[=].operation.sourceId = "create-{type}-{number}" 
 */
-
-
-
-
-
-
-
-
-
-
-
 
 
 RuleSet: operationDeleteSetup(destinationUri)

@@ -192,7 +192,32 @@ RuleSet: assertConditionCodeExists // checks existance of SKS-d code
 
 
 RuleSet: assertValidConditionList
-* test[=].action[+].assert.description = "Validate the bundle against medcomConditionList profile"
-* test[=].action[=].assert.direction = #request
+* test[=].action[+].assert.description  = "Validate the bundle against medcomConditionList profile"
+* test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.validateProfileId = "MedComConditionListBundle"
-* test[=].action[=].assert.warningOnly = false
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertMoreThanOneCondition
+* test[=].action[+].assert.description  = "Confirm more that one entry with resourceType 'Condition' in bundle"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).count() > 1"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertNoDuplicateCondition
+* test[=].action[+].assert.description  = "Validates that no two condition id's in the composition are the same "
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry[0].resource.section.entry.reference.isDistinct()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertDanishTimeZone
+* test[=].action[+].assert.description  = "Validate that timezone is either  +01 or +02"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.timestamp.toString().substring(19,3) = '+01' or Bundle.timestamp.toString().substring(19,3) = '+02'"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertUniqueBundleTimeStamp
+* test[=].action[+].assert.description  = "Validate that bundle timestamp is not reused from other timestamps"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).where(onset.toString() = %context.timestamp).count() = 0 and Bundle.entry.resource.ofType(Condition).where(abatement.toString() = %context.timestamp).count() = 0 and Bundle.entry.resource.ofType(Condition).where(recordedDate.toString() = %context.timestamp).count() = 0 "
+* test[=].action[=].assert.warningOnly  = false
+

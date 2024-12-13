@@ -165,6 +165,8 @@ RuleSet: assertEncounterLeapYear
 * test[=].action[=].assert.warningOnly = false
 
 
+// ConditionList Specifics
+
 RuleSet: assertValidConditionList
 * test[=].action[+].assert.description  = "Validate the bundle against medcomConditionList profile"
 * test[=].action[=].assert.direction    = #request
@@ -203,16 +205,31 @@ RuleSet: assertUniqueBundleTimeStamp
 * test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertConditionCodeExistsSKS // checks existance of SKS-d code
-* test[=].action[+].assert.description = "Confirm that the SKS-D conditionCode exists"
+* test[=].action[+].assert.description = "Confirm that the SKS-D codes, including code, system, and if available, display value."
 * test[=].action[=].assert.direction = #request // request fordi der testes på det vi sender til serveren, ikke hvad vi modtager
-* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.4.12').select(code | system | display).count() > 1"
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).code.coding.where(select(system = 'urn:oid:1.2.208.176.2.4.12' and code.exists() )).count() = Bundle.entry.resource.ofType(Condition).count()"
 * test[=].action[=].assert.warningOnly = false
+
+
+RuleSet: assertConditionCodeIncludeDisplaySKS
+* test[=].action[+].assert.description  = "Validate that there is a display value attached to all SKS codes"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.4.12').display.count() = Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.4.12').count()"
+* test[=].action[=].assert.warningOnly  = true
+
 
 RuleSet: assertConditionCodeExistsICPC2
 * test[=].action[+].assert.description  = "Validate existance of ICPC-2 codes, including code, system, and if available, display value."
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.31').select(code | system | display).count() > 1"
 * test[=].action[=].assert.warningOnly  = false
+
+
+RuleSet: assertConditionCodeIncludeDisplayICPC2
+* test[=].action[+].assert.description  = "Validate that there is a display value attached to all ICPC2 codes"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.31').display.count() = Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.31').count()"
+* test[=].action[=].assert.warningOnly  = true
 
 
 RuleSet: assertDiagnosisStatusCurrent
@@ -251,12 +268,17 @@ RuleSet: assertClinicalStatusCodeResolved
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).clinicalStatus.coding.code = 'resolved'"
 * test[=].action[=].assert.warningOnly  = false
 
+RuleSet: assertClinicalStatusCodeSystem
+* test[=].action[+].assert.description  = "Validate existance of clinicalStatus coding system exists"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).clinicalStatus.coding.system.exists()"
+* test[=].action[=].assert.warningOnly  = true
+
 RuleSet: assertAtachedNoteNotIncluded
 * test[=].action[+].assert.description  = "Validate that there is no Note attached to the condition"
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).note.exists().not()"
 * test[=].action[=].assert.warningOnly  = true
-* test[=].action[=].assert.message      = 
 
 RuleSet: assertCodeTextIncluded // 0..1 not required
 * test[=].action[+].assert.description  = "Validate the inclusion of code text"

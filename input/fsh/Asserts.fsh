@@ -164,20 +164,6 @@ RuleSet: assertEncounterLeapYear
 * test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Encounter).period.start.contains('2024-02-29')"
 * test[=].action[=].assert.warningOnly = false
 
-/* RuleSet: assertPatientIdentifier(patientID)
-* test[=].action[+].assert.description = "Confirm that the patient.deceased is set to {deceased}"
-* test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Patient).identifier.value"
-* test[=].action[=].assert.operator = #notFound
-* test[=].action[=].assert.value = "{deceased}"
-* test[=].action[=].assert.warningOnly = false */
-
-RuleSet: assertConditionCodeExists // checks existance of SKS-d code
-* test[=].action[+].assert.description = "Confirm that the conditionCode exists"
-* test[=].action[=].assert.direction = #request // request fordi der testes på det vi sender til serveren, ikke hvad vi modtager
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.31').exists()"
-* test[=].action[=].assert.warningOnly = false
-
 
 RuleSet: assertValidConditionList
 * test[=].action[+].assert.description  = "Validate the bundle against medcomConditionList profile"
@@ -215,4 +201,77 @@ RuleSet: assertUniqueBundleTimeStamp
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).select(recordedDate.toString() | onset.toString() | abatement.toString()) contains Bundle.timestamp.toString()"
 * test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertConditionCodeExistsSKS // checks existance of SKS-d code
+* test[=].action[+].assert.description = "Confirm that the SKS-D conditionCode exists"
+* test[=].action[=].assert.direction = #request // request fordi der testes på det vi sender til serveren, ikke hvad vi modtager
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.4.12').select(code | system | display).count() > 1"
+* test[=].action[=].assert.warningOnly = false
+
+RuleSet: assertConditionCodeExistsICPC2
+* test[=].action[+].assert.description  = "Validate existance of ICPC-2 codes, including code, system, and if available, display value."
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.31').select(code | system | display).count() > 1"
+* test[=].action[=].assert.warningOnly  = false
+
+
+RuleSet: assertDiagnosisStatusCurrent
+* test[=].action[+].assert.description  = "Validates the existance of category:status and display = Current"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system =  'http://snomed.info/sct' and display = 'Current' and code = '15240007').exists()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertDiagnosisTypeEncounterDiagnosis
+* test[=].action[+].assert.description  = "Validate existance of category:type and that code = encounter-diagnosis "
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system =  'http://terminology.hl7.org/CodeSystem/condition-category' and code = 'encounter-diagnosis' ).exists()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertOnsetDateExists
+* test[=].action[+].assert.description  = "Validate existance of onset date"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).onset.exists()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertAbatementDateExists
+* test[=].action[+].assert.description  = "Validate existance of abatement date"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).abatement.exists()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertRecordedDateExists
+* test[=].action[+].assert.description  = "Validate existance of recorded date"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).recordedDate.exists()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertClinicalStatusCodeResolved
+* test[=].action[+].assert.description  = "Validate the clinicalStatus code = resolved"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).clinicalStatus.coding.code = 'resolved'"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertAtachedNoteNotIncluded
+* test[=].action[+].assert.description  = "Validate that there is no Note attached to the condition"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).note.exists().not()"
+* test[=].action[=].assert.warningOnly  = true
+
+RuleSet: assertCodeTextIncluded // 0..1 not required
+* test[=].action[+].assert.description  = "Validate the inclusion of code text"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).code.text.exists()"
+* test[=].action[=].assert.warningOnly  = true
+
+/*
+
+RuleSet: 
+* test[=].action[+].assert.description  = ""
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = ""
+* test[=].action[=].assert.warningOnly  = false
+*/
+
+
+
 

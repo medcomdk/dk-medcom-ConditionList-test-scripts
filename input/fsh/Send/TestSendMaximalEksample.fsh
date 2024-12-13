@@ -1,15 +1,16 @@
-Instance: Conditionlist_testscript_max_eksample
+
+
+Instance: Conditionlist-testscript-max-eksample
 InstanceOf: TestScript
-Title: "Conditionlist testscript max eksample"
-Description: "Send the maximum test eksample with all codes and dates"
+Description: "Create and send the maximum test example"
 * insert Metadata
-* id = Conditionlist_testscript_max_eksample
-* url = "http://medcomfhir.dk/ig/conditionlisttestscript/Conditionlist_testscript_max_eksample"
+* id = "Conditionlist-testscript-max-eksample"
+* url = "http://medcomfhir.dk/ig/conditionlisttestscript/Conditionlist-testscript-max-eksample"
 * name = "ConditionListSendMaxEksample"
 
 
 // Initialise the conditionlist, including operations.
-* insert InitialzeConditionList(multipleConditions, 01, /FHIRSandbox/MedCom/ConditionList/CLBundle/fixtures/fixtures.json)
+* insert InitialzeConditionList(maxExample, 01, /FHIRSandbox/MedCom/ConditionList/CLBundle/fixtures/fixtures.json)
 
 
 /*
@@ -19,29 +20,22 @@ These are the tests performed on whats uploaded to the fhir-server
 */
 
 // Reoccuring asserts for all tests
+
 * insert assertPayload              // assert that the post is a bundle
 * insert assertResponseCodeTest     // assert that the serverResponce is 200 or 201
 * insert assertValidConditionList   // Validate the conditionlist in the bundle
 * insert assertDanishTimeZone       // Validate time zones on timestamp of conditionList
 
 // Specific for this test
+
 * insert assertConditionCodeExistsSKS
+* insert assertConditionCodeExistsICPC2
 * insert assertDiagnosisTypeEncounterDiagnosis
 * insert assertOnsetDateExists
 * insert assertAbatementDateExists
 * insert assertRecordedDateExists
 * insert assertClinicalStatusCodeResolved
 * insert assertAtachedNoteNotIncluded
-
-
-
-
-
-
-
-
-
-
 
 
 /*

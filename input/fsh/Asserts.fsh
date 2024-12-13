@@ -199,7 +199,7 @@ RuleSet: assertDanishTimeZone
 RuleSet: assertUniqueBundleTimeStamp
 * test[=].action[+].assert.description  = "Validate that bundle timestamp is not reused from other timestamps"
 * test[=].action[=].assert.direction    = #request
-* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).select(recordedDate.toString() | onset.toString() | abatement.toString()) contains Bundle.timestamp.toString()"
+* test[=].action[=].assert.expression   = "(Bundle.entry.resource.ofType(Condition).select(recordedDate.toString() | onset.toString() | abatement.toString()) contains Bundle.timestamp.toString() ).not()"
 * test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertConditionCodeExistsSKS // checks existance of SKS-d code
@@ -256,6 +256,7 @@ RuleSet: assertAtachedNoteNotIncluded
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).note.exists().not()"
 * test[=].action[=].assert.warningOnly  = true
+* test[=].action[=].assert.message      = 
 
 RuleSet: assertCodeTextIncluded // 0..1 not required
 * test[=].action[+].assert.description  = "Validate the inclusion of code text"

@@ -202,3 +202,9 @@ RuleSet: assertBundleTimestampNotEqualToCompositionDate
 * test[=].action[=].assert.direction = #request
 * test[=].action[=].assert.expression = "Bundle.timestamp != Bundle.entry.resource.ofType(Composition).date"
 * test[=].action[=].assert.warningOnly = false
+
+RuleSet: assertNoteTextNotPresent
+* test[=].action[+].assert.description = "It is currently not allowed to share a Condition.not.text (Danish: Tillægstekst). Test that a document is made without any conditions containing a Condition.not.text element."
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).note.text.exists().not()"
+* test[=].action[=].assert.warningOnly = false

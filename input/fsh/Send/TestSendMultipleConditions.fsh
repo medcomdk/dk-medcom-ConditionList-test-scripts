@@ -8,20 +8,28 @@ Description: "Send: Create, validate and send a Conditionlist"
 * name = "ConditionListTestScript"
 
 // Initialise the conditionlist, including operations.
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList/CLBundle/fixtures/fixtures.json)
+* insert InitialzeConditionList(multipleConditions, 01, /FHIRSandbox/MedCom/ConditionList/CLBundle/fixtures/fixtures.json)
 
 
 /*
 Insert asserts
 These are the tests performed on whats uploaded to the fhir-server
+// * insert assertConditionCodeExists
 */
 
-
-* insert repeatingAsserts // Reoccuring asserts for all tests
+// Reoccuring asserts for all tests
+* insert repeatingAsserts 
 
 
 // Specific for this test
-* insert assertConditionCodeExists
+
+
+// number of conditions > 1
 * insert assertMoreThanOneCondition
-* insert assertNoDuplicateCondition
+
+// bundle timestamp musn't be drawn from elsewere
 * insert assertUniqueBundleTimeStamp
+
+// No duplicates
+* insert assertNoDuplicateConditionId
+* insert assertNoDuplicateCondition

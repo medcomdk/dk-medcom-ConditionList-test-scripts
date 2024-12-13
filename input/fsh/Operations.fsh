@@ -1,6 +1,6 @@
 RuleSet: operationCreateConditionList(type,number)
-* test[+].id = "ConditionList-create-{type}-{number}" // Update hospitalnotification
-* test[=].name = "Create a ConditionList with multiple different conditions {number}" 
+* test[+].id = "ConditionList-create-{type}-{number}" 
+* test[=].name = "Create a ConditionList {type} {number}" 
 * test[=].description = "Post ConditionList to the server." 
 * test[=].action[+].operation.type.system = "http://terminology.hl7.org/CodeSystem/testscript-operation-codes"
 * test[=].action[=].operation.type.code = #create
@@ -11,6 +11,19 @@ RuleSet: operationCreateConditionList(type,number)
 * test[=].action[=].operation.origin = 1
 // * test[=].action[=].operation.responseId = "create-message-{type}"
 * test[=].action[=].operation.sourceId = "create-{type}-{number}" 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 RuleSet: operationCreateMessage(type, number)
@@ -28,7 +41,7 @@ RuleSet: operationCreateMessage(type, number)
 * test[=].action[=].operation.sourceId = "create-{type}-{number}" 
 */
 
-
+/*
 RuleSet: operationDeleteSetup(destinationUri)
 * setup[+].action[+].operation.type.system = "http://terminology.hl7.org/CodeSystem/testscript-operation-codes"
 * setup[=].action[=].operation.type.code = #delete
@@ -77,3 +90,4 @@ RuleSet: operationReadMessage(type, number, destinationUri, bundleid)
 * test[=].action[=].operation.encodeRequestUrl = true
 * test[=].action[=].operation.origin = 1
 * test[=].action[=].operation.params = "?message.destination-uri=${{destinationUri}}&amp;member._id=${{bundleid}}"
+*/

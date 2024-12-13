@@ -20,18 +20,6 @@ RuleSet: assertResponseNotFound //kan bruges til at bekræfte, at en meddelelse 
 * test[=].action[=].assert.operator = #equals
 * test[=].action[=].assert.warningOnly = false
 
-RuleSet: assertValidateProfiles
-* test[=].action[+].assert.description = "Validates the bundle against http://medcomfhir.dk/ig/hospitalnotification/ImplementationGuide/dk.fhir.ig.dk-medcom-hospitalnotification" 
-* test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.validateProfileId = "hospitalnotification"
-* test[=].action[=].assert.warningOnly = false
-
-RuleSet: assertMessageHeaderid(messageHeaderid)
-* test[=].action[+].assert.description = "Confirm that the previous MessageHeader fullURL is identical to Provenance.entity.what" 
-* test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Provenance).where(entity.what.reference = '${{messageHeaderid}}').count() = 1"
-* test[=].action[=].assert.warningOnly = false
-
 RuleSet: assertPayload
 * test[=].action[+].assert.description = "Confirm that the client request payload contains a Bundle resource type."
 * test[=].action[=].assert.direction = #request
@@ -204,6 +192,12 @@ RuleSet: assertMoreThanOneCondition
 * test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertNoDuplicateCondition
+* test[=].action[+].assert.description  = "Validates no duplicate conditions in conditionList"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).isDistinct()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertNoDuplicateConditionId
 * test[=].action[+].assert.description  = "Validates that no two condition id's in the composition are the same "
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry[0].resource.section.entry.reference.isDistinct()"
@@ -215,9 +209,10 @@ RuleSet: assertDanishTimeZone
 * test[=].action[=].assert.expression   = "Bundle.timestamp.toString().substring(19,3) = '+01' or Bundle.timestamp.toString().substring(19,3) = '+02'"
 * test[=].action[=].assert.warningOnly  = false
 
+// select cluase draws out a list of all present dates of the relevant types, all typecast for effective comparisson.
 RuleSet: assertUniqueBundleTimeStamp
 * test[=].action[+].assert.description  = "Validate that bundle timestamp is not reused from other timestamps"
 * test[=].action[=].assert.direction    = #request
-* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).where(onset.toString() = %context.timestamp).count() = 0 and Bundle.entry.resource.ofType(Condition).where(abatement.toString() = %context.timestamp).count() = 0 and Bundle.entry.resource.ofType(Condition).where(recordedDate.toString() = %context.timestamp).count() = 0 "
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).select(recordedDate.toString() | onset.toString() | abatement.toString()) contains Bundle.timestamp.toString()"
 * test[=].action[=].assert.warningOnly  = false
 

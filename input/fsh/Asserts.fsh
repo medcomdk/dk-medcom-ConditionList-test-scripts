@@ -208,3 +208,18 @@ RuleSet: assertNoteTextNotPresent
 * test[=].action[=].assert.direction = #request
 * test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).note.text.exists().not()"
 * test[=].action[=].assert.warningOnly = false
+
+RuleSet: assertConditionsHaveDifferentRecordedDates
+* test[=].action[+].assert.description = "Confirming that the system under test can generate a ConditionList containing Conditions with different recordedDates."
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).recordedDate.count() = Bundle.entry.resource.ofType(Condition).recordedDate.distinct().count()"
+* test[=].action[=].assert.warningOnly = false
+
+
+/*
+RuleSet: assertNumberOfConditionsIsTwo
+* test[=].action[+].assert.description = "Ensure that exactly two Conditions is present in the ConditionList for this test script."
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType('Condition').where(recordedDate.exists()).count() = 2"
+* test[=].action[=].assert.warningOnly = false
+*/

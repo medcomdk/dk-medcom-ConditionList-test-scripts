@@ -187,7 +187,7 @@ RuleSet: assertEncounterLeapYear
 RuleSet: assertConditionCodeExists // checks existance of SKS-d code
 * test[=].action[+].assert.description = "Confirm that the conditionCode exists"
 * test[=].action[=].assert.direction = #request // request fordi der testes på det vi sender til serveren, ikke hvad vi modtager
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.31').exists()"
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.4.12').exists()"
 * test[=].action[=].assert.warningOnly = false
 
 
@@ -203,9 +203,28 @@ RuleSet: assertBundleTimestampNotEqualToCompositionDate
 * test[=].action[=].assert.expression = "Bundle.timestamp != Bundle.entry.resource.ofType(Composition).date"
 * test[=].action[=].assert.warningOnly = false
 
-// 
+
 RuleSet: assertonsetDateTimeBeforeAbatementDateTime 
 * test[=].action[+].assert.description = "Validate the onsetDateTime is before the AbatementDateTime"
 * test[=].action[=].assert.direction = #request
 * test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(abatement).where(onset > abatement).exists().not()"
+* test[=].action[=].assert.warningOnly = false
+
+// the following 3 rulesets, is used for the same testscript (minimum example in testprotocol)
+RuleSet: AssertConditionTextExists // checks existance of text (DA: diagnosetekst)
+* test[=].action[+].assert.description = "Confirm that the text (DA: diagnosetekst) exists"
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).code.text.exists()"
+* test[=].action[=].assert.warningOnly = false
+
+RuleSet: AssertConditionStatusExists // checks existance of diagnosis status being Resolved 
+* test[=].action[+].assert.description = "Confirm that the diagnosis status is Resolved"
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).clinicalStatus.coding.code = 'Resolved'"
+* test[=].action[=].assert.warningOnly = false
+
+RuleSet: AssertDateAndTimeofRegistrationExists // checks existance of date and time of registration (DA: Registreringsdato)
+* test[=].action[+].assert.description = "Confirm that the date and time of registration exists"
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).recordedDate.exists()"
 * test[=].action[=].assert.warningOnly = false

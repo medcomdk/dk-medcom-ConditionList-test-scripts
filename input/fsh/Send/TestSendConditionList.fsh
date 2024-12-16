@@ -34,11 +34,21 @@ Description: "assertonsetDateTimeBeforeAbatementDateTime"
 * insert assertonsetDateTimeBeforeAbatementDateTime
 
 
+Instance: Conditionlist-testscript-send-04
+InstanceOf: TestScript
+Title: "Conditionlist_testscript4"
+Description: "Send: Create a minimum example as stated in the test protocol, teststep 3.3.2.2"
+* insert Metadata
+* id = "Conditionlist-testscript-send-04"
+* url = "http://medcomfhir.dk/ig/conditionlisttestscript/Conditionlist-testscript-send-04"
+* name = "ConditionListTestScript"
+* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert assertConditionCodeExists
+* insert AssertConditionTextExists
+* insert AssertConditionStatusExists
+* insert AssertDateAndTimeofRegistrationExists
 
 
 
-//SUNE? * insert assertResponseCodeTest
 
 
-// * insert assertResponseCodeTest
-// * insert assertPayload

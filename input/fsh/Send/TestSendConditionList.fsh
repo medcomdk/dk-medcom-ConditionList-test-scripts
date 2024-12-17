@@ -43,6 +43,7 @@ Description: "assertBundleTimestampNotEqualToCompositionDate"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/Conditionlist-testscript-send-02"
 * name = "ConditionListTestScript4"
 * insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert assertNumberOfConditionsMoreThanOne
 * insert assertConditionsHaveDifferentRecordedDates
 
 //SUNE? * insert assertResponseCodeTest

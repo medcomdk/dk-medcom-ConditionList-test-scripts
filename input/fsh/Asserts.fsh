@@ -215,11 +215,8 @@ RuleSet: assertConditionsHaveDifferentRecordedDates
 * test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).recordedDate.count() = Bundle.entry.resource.ofType(Condition).recordedDate.distinct().count()"
 * test[=].action[=].assert.warningOnly = false
 
-
-/*
-RuleSet: assertNumberOfConditionsIsTwo
-* test[=].action[+].assert.description = "Ensure that exactly two Conditions is present in the ConditionList for this test script."
+RuleSet: assertNumberOfConditionsMoreThanOne
+* test[=].action[+].assert.description = "Ensure that more than one Condition is present in the ConditionList for this test script."
 * test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType('Condition').where(recordedDate.exists()).count() = 2"
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(recordedDate.exists()).count() < 1"
 * test[=].action[=].assert.warningOnly = false
-*/

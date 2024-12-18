@@ -1,32 +1,28 @@
 ### Background
 
-> Describe the purpose of the IG
+This Implementation Guide (IG) has two purposes: 1) to present test scripts for sending ConditionList v. 1.0, and 2) to present test examples used in the testprotocol for receiving ConditionList. Both test scripts and test examples are developed by MedCom. 
 
-Both test scripts and test examples are developed by MedCom. For more information, please click on the tabs above.
+The purpose of a ConditionList is to gather selected diagnoses into a condition list, thereby providing a well-defined overview of the patient's current health status and previously significant relevant diagnoses. The diagnoses included in the ConditionList are exclusively selected to be shared by the patient's general practitioner.
 
-#### Relevant information
+#### Relevant references
 
-> Include relevant links. E.g:
-
-The following pages might be of interest when implementing HospitalNotification:
-* [GitHub-pages for [STANDARDNAME]](https://medcomdk.github.io/dk-medcom-hospitalnotification)
-  * [Testprotocol for sending and receiving [STANDARDNAME]](https://medcomdk.github.io/dk-medcom-hospitalnotification/#2-test-and-certification)
-* [Implementation Guide for [STANDARDNAME] v. x.x](https://medcomfhir.dk/ig/hospitalnotification/3.0.0)
-* [Governance for MedCom FHIR messaging](https://medcomdk.github.io/MedComLandingPage/)
+The following pages contains important information when implementing ConditionList, as they contain relevant information:
+* [GitHub-pages for ConditionList](https://medcomdk.github.io/dk-medcom-conditionlist/)
+  * [Testprotocol for sending and receiving ConditionList](https://medcomdk.github.io/dk-medcom-conditionlist/#2-test-and-certification)
+* [Implementation Guide for Conditionlist v. 1.0](https://medcomfhir.dk/ig/conditionlist/1.0.0/)
+* [GitHub-pages for MedCom FHIR documents](https://medcomdk.github.io/dk-medcom-document/)
 
 ### Governance
 A description of <a href="https://medcomdk.github.io/MedComLandingPage/#4-change-management-and-versioning">governance concerning change management and versioning of MedComs FHIR artefacts, can be found on here</a>.
 
 #### Download
-Content in this IG can be downloaded under [Download](downloads.html). The download includes both test scripts and test examples. It is also possible to download each artifact, on the individual page.
-
-#### Quality Assurance Report
-
-> Describe the errors
-
-In the Quality Assurance report (QA-report) for this IG there are some errors and warnings. An instance of the errors are: *Unable to resolve resource with reference '/FHIRSandbox/MedCom/HospitalNotificationTMS/HospitalNotification-fixture-SLOR.xml* and *Unable to resolve resource with reference 'http://medcomfhir.dk/ig/hospitalnotification/StructureDefinition/medcom-hospitalNotification-message'*. The errors occur when creating a test script, as the fixture and profile are not reachable in the IG. However, they are reachable from TouchStone, why it is of less concern. For vendors who uses the test scripts locally should be aware of the error and e.g. create the fixtures and define the profile locally.
+Content in this IG can be downloaded under the tab [Download](downloads.html). The download includes both test scripts and test examples. It is also possible to download each artifact, on the individual page.
 
 #### Contact
 <a href="https://www.medcom.dk/">MedCom</a> is responsible for this IG.
+
+#### Quality Assurance Report
+
+> DESCRIBE ERRORS
 
 If you have any questions, please contact <a href="mailto:fhir@medcom.dk">fhir@medcom.dk</a> or write to MedCom’s stream in <a href="https://chat.fhir.org/#narrow/stream/315677-denmark.2Fmedcom.2FFHIRimplementationErfaGroup">Zulip</a>.

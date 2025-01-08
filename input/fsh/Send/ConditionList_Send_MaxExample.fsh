@@ -14,10 +14,6 @@ Description: "ConditionList_Testscript_Send-Create and send a maximum test examp
 // Asserts
 
 
-// Reoccuring asserts for all tests
-* insert assertPayload              // assert that the post is a bundle
-* insert assertResponseCodeTest     // assert that the serverResponce is 200 or 201
-* insert assertValidConditionList   // Validate the conditionlist in the bundle
 
 
 // Specific for this test

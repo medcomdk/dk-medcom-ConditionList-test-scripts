@@ -187,7 +187,7 @@ RuleSet: assertEncounterLeapYear
 ////////////////////////////////// Asserts for ConditionList ///////////////////////////
 RuleSet: assertConditionCodeExists // checks existance of SKS-d code
 * test[=].action[+].assert.description = "Confirm that the conditionCode exists"
-* test[=].action[=].assert.direction = #request // request fordi der testes på det vi sender til serveren, ikke hvad vi modtager
+* test[=].action[=].assert.direction = #request
 * test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.4.12').exists()"
 * test[=].action[=].assert.warningOnly = false
 

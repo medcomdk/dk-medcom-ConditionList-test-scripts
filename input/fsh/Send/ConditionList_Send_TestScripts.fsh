@@ -109,6 +109,17 @@ Description: "Validate basic structure definition validity"
 
 * insert assertOneCondition
 
+Instance: ConditionList_Testscript_Send-AbatementDate-Equal-To-recordedDate
+InstanceOf: TestScript
+Title: "ConditionList_Testscript_Send-AbatementDate-Equal-To-recordedDate"
+Description: "assertAbatementDate is equal to recordedDate"
+* insert Metadata
+* id = "AbatementDate-Equal-To-recordedDate"
+* url = "http://medcomfhir.dk/ig/conditionlisttestscript/AbatementDate-Equal-To-recordedDate"
+* name = "ConditionListTestScript"
+* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
+* insert assertOneCondition //RCH: Spørgsmål: Nogle asserts virker kun hvis der kun er én Condition i Bundlen. Skal vi ændre dem, eller teste, at der ku ner én i disse scripts?
+* insert assertAbatementDateTimeEqualTorecordedDate
 
 // Spørgsmål: Hvorfor navngiver vi som vi gør?
 // Hvorfor skifter vi mellem dansk og engelsk?

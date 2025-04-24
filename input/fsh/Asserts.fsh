@@ -360,7 +360,7 @@ RuleSet: assertDanishTimeZone
 * test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertOneCondition
-* test[=].action[+].assert.description  = "Confirm that one entry with resourceType 'Condition' is in bundle"
+* test[=].action[+].assert.description  = "Confirm that one entry with resourceType Condition is in bundle"
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).count() = 1"
 * test[=].action[=].assert.warningOnly  = false

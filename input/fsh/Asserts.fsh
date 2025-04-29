@@ -360,7 +360,13 @@ RuleSet: assertDanishTimeZone
 * test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertOneCondition
-* test[=].action[+].assert.description  = "Confirm that one entry with resourceType 'Condition' is in bundle"
+* test[=].action[+].assert.description  = "Confirm that one entry with resourceType Condition is in bundle"
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).count() = 1"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertAbatementDateTimeEqualTorecordedDate
+* test[=].action[+].assert.description  = "Validate that abatementDateTime is equal to recordedDate"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).where(abatement).where(recordedDate = abatement).exists()"
 * test[=].action[=].assert.warningOnly  = false

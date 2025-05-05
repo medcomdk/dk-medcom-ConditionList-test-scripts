@@ -166,7 +166,7 @@ RuleSet: assertEncounterEndTimeZone
 RuleSet: assertCompareTimeZone(encounterTimeZone)
 * test[=].action[+].assert.description = "Confirm that Encounter.period.start and Encounter.period.end has different timezones."
 * test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Encounter).period.end.(substring(19,3) = '${{encounterTimeZone}}').exists().not"
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Encounter).period.end.(substring(19,3) = '${{encounterTimeZone}}').exists().not()"
 * test[=].action[=].assert.warningOnly = false
 
 
@@ -370,3 +370,27 @@ RuleSet: assertAbatementDateTimeEqualTorecordedDate
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).where(abatement).where(recordedDate = abatement).exists()"
 * test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertAbatementDateNotExists
+* test[=].action[+].assert.description  = "Validate no existance of abatement date"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).abatement.exists().not()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertOnsetDateNotExists
+* test[=].action[+].assert.description  = "Validate no existance of onset date"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).onset.exists().not()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertonsetDateTimeBeforerecordedDate
+* test[=].action[+].assert.description = "Validate the onsetDateTime is before the recordedDate"
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(onset).where(onset > recordedDate).exists().not()"
+* test[=].action[=].assert.warningOnly = false
+
+RuleSet: assertonsetDateTimeEqualTorecordedDate
+* test[=].action[+].assert.description = "Validate the onsetDateTime is equal to the recordedDate"
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(onset).where(onset = recordedDate).exists()"
+* test[=].action[=].assert.warningOnly = false

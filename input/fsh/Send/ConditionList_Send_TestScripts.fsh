@@ -92,7 +92,6 @@ Description: "Validate condition id's for a condition list with multiple conditi
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/Multiple-Conditions-Unique-Condition-Id"
 * name = "ConditionListTestScript"
 * insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
-
 * insert assertMoreThanOneCondition
 * insert assertNoDuplicateConditionId
 * insert assertNoDuplicateCondition
@@ -106,7 +105,6 @@ Description: "Validate basic structure definition validity"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/Singular-Condition-Basic-StructureDefinition-Validity"
 * name = "ConditionListTestScript"
 * insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
-
 * insert assertOneCondition
 
 Instance: ConditionList_Testscript_Send-AbatementDate-Equal-To-recordedDate
@@ -118,11 +116,51 @@ Description: "assertAbatementDate is equal to recordedDate"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/AbatementDate-Equal-To-recordedDate"
 * name = "ConditionListTestScript"
 * insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
-* insert assertOneCondition //RCH: Spørgsmål: Nogle asserts virker kun hvis der kun er én Condition i Bundlen. Skal vi ændre dem, eller teste, at der ku ner én i disse scripts?
+* insert assertOneCondition
 * insert assertAbatementDateTimeEqualTorecordedDate
 
-// Spørgsmål: Hvorfor navngiver vi som vi gør?
-// Hvorfor skifter vi mellem dansk og engelsk?
-// Hvorfor skifter vi mellem understreg og bindestreg?
-// Hvor finder jeg eksempelvis "teststep 3.3.2.2"?
-// Hvorfor er name = "ConditionListTestScript" ikke en del af Metadata?
+
+Instance: ConditionList_Testscript_Send-No-AbatementDate-Exists
+InstanceOf: TestScript
+Title: "ConditionList_Testscript_Send-No-AbatementDate-Exists"
+Description: "Validate no existance of abatement date"
+* insert Metadata
+* id = "No-AbatementDate-Exists"
+* url = "http://medcomfhir.dk/ig/conditionlisttestscript/No-AbatementDate-Exists"
+* name = "ConditionListTestScript"
+* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
+* insert assertAbatementDateNotExists
+
+
+Instance: ConditionList_Testscript_Send-No-onsetDateTime-Exists
+InstanceOf: TestScript
+Title: "ConditionList_Testscript_Send-No-onsetDateTime-Exists"
+Description: "Validate no existance of onsetDateTime"
+* insert Metadata
+* id = "No-onsetDateTime-Exists"
+* url = "http://medcomfhir.dk/ig/conditionlisttestscript/No-onsetDateTime-Exists"
+* name = "ConditionListTestScript"
+* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
+* insert assertOnsetDateNotExists
+
+Instance: ConditionList_Testscript_Send-onsetDateTime-is-before-recordedDate
+InstanceOf: TestScript
+Title: "ConditionList_Testscript_onsetDateTime-is-before-recordedDate"
+Description: "Validate the onsetDateTime is before the recordedDate"
+* insert Metadata
+* id = "onsetDateTime-is-before-recordedDate"
+* url = "http://medcomfhir.dk/ig/conditionlisttestscript/onsetDateTime-is-before-recordedDate"
+* name = "ConditionListTestScript"
+* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
+* insert assertonsetDateTimeBeforerecordedDate
+
+Instance: ConditionList_Testscript_Send-onsetDateTime-is-equal-to-recordedDate
+InstanceOf: TestScript
+Title: "ConditionList_Testscript_onsetDateTime-is-equal-to-recordedDate"
+Description: "Validate the onsetDateTime is equal to the recordedDate"
+* insert Metadata
+* id = "onsetDateTime-is-equal-to-recordedDate"
+* url = "http://medcomfhir.dk/ig/conditionlisttestscript/onsetDateTime-is-equal-to-recordedDate"
+* name = "ConditionListTestScript"
+* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
+* insert assertonsetDateTimeEqualTorecordedDate

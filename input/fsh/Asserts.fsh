@@ -107,9 +107,9 @@ RuleSet: assertDiagnosisStatusCurrent
 * test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertDiagnosisTypeEncounterDiagnosis
-* test[=].action[+].assert.description  = "Validate existance of category:type  and that system =  http://terminology.hl7.org/CodeSystem/condition-category and code = encounter-diagnosis"
+* test[=].action[+].assert.description  = "Validate existance of category:type and that system = http://terminology.hl7.org/CodeSystem/condition-category and code = encounter-diagnosis"
 * test[=].action[=].assert.direction    = #request
-* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system =  'http://terminology.hl7.org/CodeSystem/condition-category' and code = 'encounter-diagnosis' ).exists()"
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system = 'http://terminology.hl7.org/CodeSystem/condition-category' and code = 'encounter-diagnosis' ).exists()"
 * test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertOnsetDateExists
@@ -161,7 +161,7 @@ RuleSet: assertNoDuplicateCondition
 * test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertDanishTimeZone
-* test[=].action[+].assert.description  = "Validate that timezone is either  +01 or +02"
+* test[=].action[+].assert.description  = "Validate that timezone is either +01 or +02"
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.timestamp.toString().substring(19,3) = '+01' or Bundle.timestamp.toString().substring(19,3) = '+02'"
 * test[=].action[=].assert.warningOnly  = false
@@ -263,7 +263,7 @@ RuleSet: assertOccurredTimeStamp(occurredDateTime)
 * test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Provenance).where(target.reference = %resource.entry[0].fullUrl).occurred > ${{occurredDateTime}}"
 /* * test[=].action[=].assert.operator = #greaterThan
 * test[=].action[=].assert.value = "{occurredDateTime}" */
-* test[=].action[=].assert.warningOnly = false                               
+* test[=].action[=].assert.warningOnly = false
 
 RuleSet: assertEncounterStatus(encounterStatus)
 * test[=].action[+].assert.description = "Confirm that the Encounter status of the request resource is {encounterStatus}."

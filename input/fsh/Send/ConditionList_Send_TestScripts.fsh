@@ -176,14 +176,3 @@ Description: "Validate the onsetDateTime is equal to the recordedDate"
 * name = "ConditionListTestScript"
 * insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
 * insert assertonsetDateTimeEqualTorecordedDate
-
-Instance: ConditionList_Testscript_Send-assert-Danish-TimeZone
-InstanceOf: TestScript
-Title: "ConditionList_Testscript_assert-Danish-TimeZone"
-Description: "Validate that timezone is either +01 or +02"
-* insert Metadata
-* id = "assert-Danish-TimeZone"
-* url = "http://medcomfhir.dk/ig/conditionlisttestscript/assert-Danish-TimeZone"
-* name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
-* insert assertDanishTimeZone

@@ -65,7 +65,7 @@ Description: "Conditionlist_Testscript_Send-Register-two-conditions-with-differe
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/Register-two-conditions-with-different-RecordedDates"
 * name = "ConditionListTestScript"
 * insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
-* insert assertNumberOfConditionsMoreThanOne
+* insert assertMoreThanOneCondition
 * insert assertConditionsHaveDifferentRecordedDates
 
 Instance: ConditionList_Testscript_Send-MultipleConditions-Unique-Timestamp

@@ -38,7 +38,7 @@ From test protocol step 3.3.1.2
 * insert assertConditionCodeExistsICPC2 // ICPC2 code contained with code and system
 * insert assertConditionCodeIncludeDisplayICPC2 // ICPC2 code has a display value (warningOnly)
 // 2
-* insert assertCodeTextIncluded // condition has a code.text field
+* insert AssertConditionTextExists // condition has a code.text field
 // 3
 * insert assertDiagnosisStatusCurrent // Diagnosis:status = Current
 // 4
@@ -54,4 +54,4 @@ From test protocol step 3.3.1.2
 * insert assertClinicalStatusCodeResolved // Clinical Status code = Resolved
 * insert assertClinicalStatusCodeSystem // Clinical status system exists
 // 9
-* insert assertAtachedNoteNotIncluded // no sharing of notes allowed in business rules (warning only)
+* insert assertNoteTextNotPresent // no sharing of notes allowed in business rules (warning only)

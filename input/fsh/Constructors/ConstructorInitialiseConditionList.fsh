@@ -17,7 +17,6 @@ RuleSet: InitialzeConditionList(type, number, fixture_path)
 * insert operationCreateConditionList({type},{number})
 
 // Assert reoccuring asserts for all tests
-* insert assertConditionCodeExists
 * insert assertPayload              // assert that the post is a bundle
 * insert assertResponseCodeTest     // assert that the serverResponse is 200 or 201
 * insert assertValidConditionList   // Validate the conditionlist in the bundle

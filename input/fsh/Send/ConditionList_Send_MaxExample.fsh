@@ -49,9 +49,9 @@ From test protocol step 3.3.1.2
 * insert assertAbatementDateExists
 // 7
 * insert assertRecordedDateExists
-
 // 8
 * insert assertClinicalStatusCodeResolved // Clinical Status code = Resolved
-* insert assertClinicalStatusCodeSystem // Clinical status system exists
 // 9
+* insert assertClinicalStatusCodeSystem // Clinical status system exists
+//10
 * insert assertNoteTextNotPresent // no sharing of notes allowed in business rules (warning only)

@@ -17,6 +17,11 @@ RuleSet: assertMoreThanOneCondition
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).count() > 1"
 * test[=].action[=].assert.warningOnly  = false
 
+RuleSet: assertTwoConditions
+* test[=].action[+].assert.description  = "Confirm more that one entry with resourceType 'Condition' in bundle"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).count() = 2"
+* test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertConditionCodeExists
 * test[=].action[+].assert.description = "Validate that a Condition contains an SKS-D code system and code"
@@ -38,7 +43,74 @@ RuleSet: assertonsetDateTimeBeforeAbatementDateTime
 * test[=].action[=].assert.warningOnly = false
 
 
-// the following 3 rulesets, is used for the same testscript (minimum example in testprotocol)
+RuleSet: assertNoteTextNotPresent
+* test[=].action[+].assert.description = "It is not allowed to share a Condition.note.text (Danish: Tillægstekst). Validate that a document is made without any conditions containing a Condition.note.text."
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).note.text.exists().not()"
+* test[=].action[=].assert.warningOnly = false
+
+
+RuleSet: assertConditionsHaveDifferentRecordedDates
+* test[=].action[+].assert.description = "Validate that the system under test can generate a ConditionList containing Conditions with different recordedDates."
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).recordedDate.count() = Bundle.entry.resource.ofType(Condition).recordedDate.distinct().count()"
+* test[=].action[=].assert.warningOnly = false
+
+RuleSet: assertUniqueBundleTimeStamp
+* test[=].action[+].assert.description  = "Validate that bundle timestamp is not reused from other timestamps"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "(Bundle.entry.resource.ofType(Condition).select(recordedDate.toString() | onset.toString() | abatement.toString()) contains Bundle.timestamp.toString() ).not()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertNoDuplicateConditionId
+* test[=].action[+].assert.description  = "Validates that no two condition id's in the composition are the same "
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry[0].resource.section.entry.reference.isDistinct()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertNoDuplicateCondition
+* test[=].action[+].assert.description  = "Validates no duplicate conditions in conditionList"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).isDistinct()" //RCH: Skal vi egentligt teste dette?
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertDanishTimeZone
+* test[=].action[+].assert.description  = "Validate that timezone is either +01 or +02"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.timestamp.toString().substring(19,3) = '+01' or Bundle.timestamp.toString().substring(19,3) = '+02'"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertAbatementDateTimeEqualTorecordedDate
+* test[=].action[+].assert.description  = "Validate that abatementDateTime is equal to recordedDate"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).where(abatement).where(recordedDate = abatement).exists()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertAbatementDateNotExists
+* test[=].action[+].assert.description  = "Validate no existance of abatementDateTime"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).abatement.exists().not()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertOnsetDateNotExists
+* test[=].action[+].assert.description  = "Validate no existance of onsetDateTime"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).onset.exists().not()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertonsetDateTimeBeforerecordedDate
+* test[=].action[+].assert.description = "Validate the onsetDateTime is before the recordedDate"
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(onset).where(onset > recordedDate).exists().not()"
+* test[=].action[=].assert.warningOnly = false
+
+RuleSet: assertonsetDateTimeEqualTorecordedDate
+* test[=].action[+].assert.description = "Validate the onsetDateTime is equal to the recordedDate"
+* test[=].action[=].assert.direction = #request
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(onset).where(onset = recordedDate).exists()"
+* test[=].action[=].assert.warningOnly = false
+
+//// Asserts for min example ////////
 RuleSet: AssertConditionTextExists
 * test[=].action[+].assert.description = "Validate that a code.text (DA: diagnosetekst) exists"
 * test[=].action[=].assert.direction = #request
@@ -55,20 +127,6 @@ RuleSet: AssertDateAndTimeofRegistrationExists
 * test[=].action[+].assert.description = "Confirm that recordedDate exists"
 * test[=].action[=].assert.direction = #request
 * test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).recordedDate.exists()" //RCH: Måske må der kun være 1 Condition?
-* test[=].action[=].assert.warningOnly = false
-
-
-RuleSet: assertNoteTextNotPresent
-* test[=].action[+].assert.description = "It is not allowed to share a Condition.note.text (Danish: Tillægstekst). Validate that a document is made without any conditions containing a Condition.note.text."
-* test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).note.text.exists().not()"
-* test[=].action[=].assert.warningOnly = false
-
-
-RuleSet: assertConditionsHaveDifferentRecordedDates
-* test[=].action[+].assert.description = "Validate that the system under test can generate a ConditionList containing Conditions with different recordedDates."
-* test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).recordedDate.count() = Bundle.entry.resource.ofType(Condition).recordedDate.distinct().count()"
 * test[=].action[=].assert.warningOnly = false
 
 
@@ -142,59 +200,6 @@ RuleSet: assertClinicalStatusCodeSystem
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).clinicalStatus.coding.system.exists()"
 * test[=].action[=].assert.warningOnly  = true
 
-RuleSet: assertUniqueBundleTimeStamp
-* test[=].action[+].assert.description  = "Validate that bundle timestamp is not reused from other timestamps"
-* test[=].action[=].assert.direction    = #request
-* test[=].action[=].assert.expression   = "(Bundle.entry.resource.ofType(Condition).select(recordedDate.toString() | onset.toString() | abatement.toString()) contains Bundle.timestamp.toString() ).not()"
-* test[=].action[=].assert.warningOnly  = false
-
-RuleSet: assertNoDuplicateConditionId
-* test[=].action[+].assert.description  = "Validates that no two condition id's in the composition are the same "
-* test[=].action[=].assert.direction    = #request
-* test[=].action[=].assert.expression   = "Bundle.entry[0].resource.section.entry.reference.isDistinct()"
-* test[=].action[=].assert.warningOnly  = false
-
-RuleSet: assertNoDuplicateCondition
-* test[=].action[+].assert.description  = "Validates no duplicate conditions in conditionList"
-* test[=].action[=].assert.direction    = #request
-* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).isDistinct()" //RCH: Skal vi egentligt teste dette?
-* test[=].action[=].assert.warningOnly  = false
-
-RuleSet: assertDanishTimeZone
-* test[=].action[+].assert.description  = "Validate that timezone is either +01 or +02"
-* test[=].action[=].assert.direction    = #request
-* test[=].action[=].assert.expression   = "Bundle.timestamp.toString().substring(19,3) = '+01' or Bundle.timestamp.toString().substring(19,3) = '+02'"
-* test[=].action[=].assert.warningOnly  = false
-
-RuleSet: assertAbatementDateTimeEqualTorecordedDate
-* test[=].action[+].assert.description  = "Validate that abatementDateTime is equal to recordedDate"
-* test[=].action[=].assert.direction    = #request
-* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).where(abatement).where(recordedDate = abatement).exists()"
-* test[=].action[=].assert.warningOnly  = false
-
-RuleSet: assertAbatementDateNotExists
-* test[=].action[+].assert.description  = "Validate no existance of abatementDateTime"
-* test[=].action[=].assert.direction    = #request
-* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).abatement.exists().not()"
-* test[=].action[=].assert.warningOnly  = false
-
-RuleSet: assertOnsetDateNotExists
-* test[=].action[+].assert.description  = "Validate no existance of onsetDateTime"
-* test[=].action[=].assert.direction    = #request
-* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).onset.exists().not()"
-* test[=].action[=].assert.warningOnly  = false
-
-RuleSet: assertonsetDateTimeBeforerecordedDate
-* test[=].action[+].assert.description = "Validate the onsetDateTime is before the recordedDate"
-* test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(onset).where(onset > recordedDate).exists().not()"
-* test[=].action[=].assert.warningOnly = false
-
-RuleSet: assertonsetDateTimeEqualTorecordedDate
-* test[=].action[+].assert.description = "Validate the onsetDateTime is equal to the recordedDate"
-* test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(onset).where(onset = recordedDate).exists()"
-* test[=].action[=].assert.warningOnly = false
 
 ////////////////////////////////// Asserts NOT for ConditionList ///////////////////////////
 

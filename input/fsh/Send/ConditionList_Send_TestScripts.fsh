@@ -1,3 +1,25 @@
+Instance: ConditionList_Testscript_Send-SingularCondition-Basic-StructureDefinition-Validity
+InstanceOf: TestScript
+Title: "ConditionList Testscript Singular Condition StructureDefinition Validity"
+Description: "Validate basic structure definition validity"
+* insert Metadata
+* id = "Singular-Condition-Basic-StructureDefinition-Validity"
+* url = "http://medcomfhir.dk/ig/conditionlisttestscript/Singular-Condition-Basic-StructureDefinition-Validity"
+* name = "ConditionListTestScript"
+* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
+* insert assertOneCondition
+
+Instance: ConditionList_Testscript_Send-More-Than-One-Condition
+InstanceOf: TestScript
+Title: "Conditionlist_Testscript_Send-More-Than-One-Condition"
+Description: "Conditionlist_Testscript_Send-More-Than-One-Condition"
+* insert Metadata
+* id = "More-Than-One-Condition"
+* url = "http://medcomfhir.dk/ig/conditionlisttestscript/More-Than-One-Condition"
+* name = "ConditionListTestScript"
+* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
+* insert assertMoreThanOneCondition
+
 Instance: ConditionList_Testscript_Send-SKS-d-CodeExists
 InstanceOf: TestScript
 Title: "ConditionList_Testscript_Send-SKS-d-Code"
@@ -65,7 +87,7 @@ Description: "Conditionlist_Testscript_Send-Register-two-conditions-with-differe
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/Register-two-conditions-with-different-RecordedDates"
 * name = "ConditionListTestScript"
 * insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
-* insert assertMoreThanOneCondition
+* insert assertTwoConditions
 * insert assertConditionsHaveDifferentRecordedDates
 
 Instance: ConditionList_Testscript_Send-MultipleConditions-Unique-Timestamp
@@ -78,7 +100,6 @@ Description: "Validate timestamps for a condition list with multiple conditions"
 * name = "ConditionListTestScript"
 // Initialise the conditionlist, including operations.
 * insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
-
 * insert assertMoreThanOneCondition
 // bundle timestamp musn't be drawn from elsewere
 * insert assertUniqueBundleTimeStamp
@@ -96,16 +117,7 @@ Description: "Validate condition id's for a condition list with multiple conditi
 * insert assertNoDuplicateConditionId
 * insert assertNoDuplicateCondition
 
-Instance: ConditionList_Testscript_Send-SingularCondition-Basic-StructureDefinition-Validity
-InstanceOf: TestScript
-Title: "ConditionList Testscript Singular Condition StructureDefinition Validity"
-Description: "Validate basic structure definition validity"
-* insert Metadata
-* id = "Singular-Condition-Basic-StructureDefinition-Validity"
-* url = "http://medcomfhir.dk/ig/conditionlisttestscript/Singular-Condition-Basic-StructureDefinition-Validity"
-* name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
-* insert assertOneCondition
+
 
 Instance: ConditionList_Testscript_Send-AbatementDate-Equal-To-recordedDate
 InstanceOf: TestScript
@@ -164,3 +176,14 @@ Description: "Validate the onsetDateTime is equal to the recordedDate"
 * name = "ConditionListTestScript"
 * insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
 * insert assertonsetDateTimeEqualTorecordedDate
+
+Instance: ConditionList_Testscript_Send-assert-Danish-TimeZone
+InstanceOf: TestScript
+Title: "ConditionList_Testscript_assert-Danish-TimeZone"
+Description: "Validate that timezone is either +01 or +02"
+* insert Metadata
+* id = "assert-Danish-TimeZone"
+* url = "http://medcomfhir.dk/ig/conditionlisttestscript/assert-Danish-TimeZone"
+* name = "ConditionListTestScript"
+* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
+* insert assertDanishTimeZone

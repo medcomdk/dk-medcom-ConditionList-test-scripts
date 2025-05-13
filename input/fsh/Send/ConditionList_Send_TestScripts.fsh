@@ -90,7 +90,7 @@ Description: "Conditionlist_Testscript_Send-Register-two-conditions-with-differe
 * insert assertTwoConditions
 * insert assertConditionsHaveDifferentRecordedDates
 
-Instance: ConditionList_Testscript_Send-MultipleConditions-Unique-Timestamp //HERTIL
+Instance: ConditionList_Testscript_Send-MultipleConditions-Unique-Timestamp
 InstanceOf: TestScript
 Title: "Conditionlist Testscript Unique Timestamp"
 Description: "Validate timestamps for a condition list with multiple conditions"
@@ -116,7 +116,6 @@ Description: "Validate condition id's for a condition list with multiple conditi
 * insert assertMoreThanOneCondition
 * insert assertNoDuplicateConditionId
 * insert assertNoDuplicateCondition
-
 
 
 Instance: ConditionList_Testscript_Send-AbatementDate-Equal-To-recordedDate

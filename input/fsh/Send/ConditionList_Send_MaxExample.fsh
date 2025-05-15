@@ -3,6 +3,8 @@ InstanceOf: TestScript
 Description: "ConditionList_Testscript_Send-Create and send a maximum test example"
 * insert Metadata
 * id = "maximum-example"
+* description = ""
+* title = ""
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/maximum-example"
 * name = "ConditionListTestScript"
 

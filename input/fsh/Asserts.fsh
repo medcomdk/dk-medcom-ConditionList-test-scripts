@@ -120,13 +120,13 @@ RuleSet: AssertConditionTextExists
 RuleSet: AssertConditionStatusExists
 * test[=].action[+].assert.description = "Validate that the diagnosis status is Resolved"
 * test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).clinicalStatus.coding.code = 'Resolved'" //RCH: Måske må der kun være 1 Condition?
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).category.coding.where(system = 'http://snomed.info/sct' and code = '723506003').exists()"
 * test[=].action[=].assert.warningOnly = false
 
 RuleSet: AssertDateAndTimeofRegistrationExists
 * test[=].action[+].assert.description = "Confirm that recordedDate exists"
 * test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).recordedDate.exists()" //RCH: Måske må der kun være 1 Condition?
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).recordedDate.exists()"
 * test[=].action[=].assert.warningOnly = false
 
 
@@ -161,7 +161,7 @@ RuleSet: assertConditionCodeIncludeDisplayICPC2
 RuleSet: assertDiagnosisStatusCurrent
 * test[=].action[+].assert.description  = "Validate the existance of category:status system = http://snomed.info/sct, code = 15240007 and display = current"
 * test[=].action[=].assert.direction    = #request
-* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system = 'http://snomed.info/sct' and display = 'current' and code = '15240007').exists()" //RCH: Skal display også testes, eller stiller vi ikke krav om dette? Jeg husker det ikke som om det er i vores egne testfiler.
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system = 'http://snomed.info/sct' and code = '15240007').exists()"
 * test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertDiagnosisTypeEncounterDiagnosis
@@ -199,6 +199,7 @@ RuleSet: assertClinicalStatusCodeSystem
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).clinicalStatus.coding.system.exists()"
 * test[=].action[=].assert.warningOnly  = true
+
 
 
 ////////////////////////////////// Asserts NOT for ConditionList ///////////////////////////

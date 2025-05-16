@@ -3,8 +3,8 @@ InstanceOf: TestScript
 Description: "ConditionList_Testscript_Send-Create and send a maximum test example"
 * insert Metadata
 * id = "maximum-example"
-* description = ""
-* title = ""
+* description = "Validate that a ConditionList contains a condition with all content, including optional, present and that these elements specifically contains: status = current, type = encounter-diagnosis, clinical status = resolved. No note (DA: Tillægstekst) must be present."
+* title = "Send: ConditionList_Testscript_Send-max-example"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/maximum-example"
 * name = "ConditionListTestScript"
 

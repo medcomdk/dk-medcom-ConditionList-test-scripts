@@ -39,7 +39,7 @@ RuleSet: assertBundleTimestampNotEqualToCompositionDate
 RuleSet: assertonsetDateTimeBeforeAbatementDateTime 
 * test[=].action[+].assert.description = "Validate the onsetDateTime is before the abatementDateTime"
 * test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(abatement).where(onset > abatement).exists().not()"
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(abatement).where(onset < abatement).exists()"
 * test[=].action[=].assert.warningOnly = false
 
 
@@ -101,7 +101,7 @@ RuleSet: assertOnsetDateNotExists
 RuleSet: assertonsetDateTimeBeforerecordedDate
 * test[=].action[+].assert.description = "Validate the onsetDateTime is before the recordedDate"
 * test[=].action[=].assert.direction = #request
-* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(onset).where(onset > recordedDate).exists().not()"
+* test[=].action[=].assert.expression = "Bundle.entry.resource.ofType(Condition).where(onset).where(onset < recordedDate).exists()"
 * test[=].action[=].assert.warningOnly = false
 
 RuleSet: assertonsetDateTimeEqualTorecordedDate

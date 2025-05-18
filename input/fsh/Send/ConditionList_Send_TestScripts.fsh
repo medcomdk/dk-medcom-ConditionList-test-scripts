@@ -93,18 +93,17 @@ Description: "ConditionList_Testscript_Send-NoteText-Not-Present"
 * insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
 * insert assertNoteTextNotPresent
 
-Instance: ConditionList_Testscript_Send-Register-two-conditions-with-different-RecordedDates
+Instance: ConditionList_Testscript_Send-Register-conditions-with-different-RecordedDates
 InstanceOf: TestScript
-Title: "Conditionlist_Testscript_Send-Register-two-conditions-with-different-RecordedDates"
+Title: "Conditionlist_Testscript_Send-Register-conditions-with-different-RecordedDates"
 Description: "Validate that the system under test can generate a ConditionList containing Conditions with different recordedDates."
 * insert Metadata
-* id = "Register-two-conditions-with-different-RecordedDates"
-* description = "Validate that a ConditionList can contain Conditions with different recordedDates."
-* title = "Send: Conditionlist_Testscript_Send-Register-two-conditions-with-different-RecordedDates"
-* url = "http://medcomfhir.dk/ig/conditionlisttestscript/Register-two-conditions-with-different-RecordedDates"
+* id = "Register-conditions-with-different-RecordedDates"
+* description = "Validate that a ConditionList contains Conditions with different recordedDates."
+* title = "Send: Conditionlist_Testscript_Send-Register-conditions-with-different-RecordedDates"
+* url = "http://medcomfhir.dk/ig/conditionlisttestscript/Register-conditions-with-different-RecordedDates"
 * name = "ConditionListTestScript"
 * insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
-* insert assertTwoConditions
 * insert assertConditionsHaveDifferentRecordedDates
 
 Instance: ConditionList_Testscript_Send-MultipleConditions-Unique-Timestamp
@@ -159,7 +158,7 @@ Title: "ConditionList_Testscript_Send-No-AbatementDate-Exists"
 Description: "Validate no existance of abatement date"
 * insert Metadata
 * id = "No-AbatementDate-Exists"
-* description = "Validate that a ConditionList can exist wuthout containing any abatementDate"
+* description = "Validate that a ConditionList can exist without containing any abatementDate"
 * title = "Send: ConditionList_Testscript_Send-No-AbatementDate-Exists"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/No-AbatementDate-Exists"
 * name = "ConditionListTestScript"
@@ -173,7 +172,7 @@ Title: "ConditionList_Testscript_Send-No-onsetDateTime-Exists"
 Description: "Validate no existance of onsetDateTime"
 * insert Metadata
 * id = "No-onsetDateTime-Exists"
-* description = "Validate that a ConditionList can exist wuthout containing any OnsetDate"
+* description = "Validate that a ConditionList can exist without containing any OnsetDate"
 * title = "Send: ConditionList_Testscript_Send-No-onsetDateTime-Exists"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/No-onsetDateTime-Exists"
 * name = "ConditionListTestScript"

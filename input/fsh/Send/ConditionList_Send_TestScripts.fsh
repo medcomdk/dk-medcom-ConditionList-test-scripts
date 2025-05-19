@@ -69,7 +69,7 @@ Title: "Conditionlist_Testscript_Send-minimum-example"
 Description: "Create a minimum example as stated in the test protocol, teststep 3.3.2.2"
 * insert Metadata
 * id = "minimum-example"
-* description = "Validate that conditions in ConditionList Bundle contains SKS-D codes and -systems and code.text. Also validates that clinicalStatus.coding.code = '723506003' and that date and time of registration exists."
+* description = "Validate that conditions in ConditionList Bundle contains SKS-D code, -system and code.text. Also validates that category.coding.code = '723506003' and that recordedDate exists."
 * title = "Send: Conditionlist_Testscript_Send-minimum-example"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/minimum-example"
 * name = "ConditionListTestScript"

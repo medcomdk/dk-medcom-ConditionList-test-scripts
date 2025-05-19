@@ -3,12 +3,14 @@ InstanceOf: TestScript
 Description: "ConditionList_Testscript_Send-Create and send a maximum test example"
 * insert Metadata
 * id = "maximum-example"
+* description = "Validate that a ConditionList contains a condition with all content, including optional, present and that these elements specifically contains: category:status = 15240007 (current), category:type = encounter-diagnosis, clinicalStatus = resolved. No note (DA: Tillægstekst) must be present."
+* title = "Send: ConditionList_Testscript_Send-max-example"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/maximum-example"
 * name = "ConditionListTestScript"
 
 
 // Initialise the conditionlist, including operations.
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionList_TestScripts/v100 - Send/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
 
 
 // Asserts
@@ -38,7 +40,7 @@ From test protocol step 3.3.1.2
 * insert assertConditionCodeExistsICPC2 // ICPC2 code contained with code and system
 * insert assertConditionCodeIncludeDisplayICPC2 // ICPC2 code has a display value (warningOnly)
 // 2
-* insert assertCodeTextIncluded // condition has a code.text field
+* insert AssertConditionTextExists // condition has a code.text field
 // 3
 * insert assertDiagnosisStatusCurrent // Diagnosis:status = Current
 // 4
@@ -49,9 +51,9 @@ From test protocol step 3.3.1.2
 * insert assertAbatementDateExists
 // 7
 * insert assertRecordedDateExists
-
 // 8
 * insert assertClinicalStatusCodeResolved // Clinical Status code = Resolved
-* insert assertClinicalStatusCodeSystem // Clinical status system exists
 // 9
-* insert assertAtachedNoteNotIncluded // no sharing of notes allowed in business rules (warning only)
+* insert assertClinicalStatusCodeSystem // Clinical status system exists
+//10
+* insert assertNoteTextNotPresent // no sharing of notes allowed in business rules (warning only)

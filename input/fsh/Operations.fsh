@@ -1,5 +1,5 @@
 RuleSet: operationCreateConditionList(type,number)
-* test[+].id = "ConditionList-create-{type}-{number}" // Update hospitalnotification
+* test[+].id = "ConditionList-create-{type}-{number}"
 * test[=].name = "Create a ConditionList {type} Message {number}" 
 * test[=].description = "Post ConditionList to the server." 
 * test[=].action[+].operation.type.system = "http://terminology.hl7.org/CodeSystem/testscript-operation-codes"
@@ -11,34 +11,6 @@ RuleSet: operationCreateConditionList(type,number)
 * test[=].action[=].operation.origin = 1
 * test[=].action[=].operation.responseId = "create-message-{type}"
 * test[=].action[=].operation.sourceId = "create-{type}-{number}" 
-
-/*
-RuleSet: operationCreateMessage(type, number)
-* test[+].id = "hospitalnotification-create-{type}-{number}" // Update hospitalnotification
-* test[=].name = "Create a HospitalNotification {type} Message {number}" 
-* test[=].description = "Post HospitalNotification to the server." 
-* test[=].action[+].operation.type.system = "http://terminology.hl7.org/CodeSystem/testscript-operation-codes"
-* test[=].action[=].operation.type.code = #create
-* test[=].action[=].operation.resource = #Bundle
-* test[=].action[=].operation.description = "Post a Hospitalnotification"
-* test[=].action[=].operation.destination = 1
-* test[=].action[=].operation.encodeRequestUrl = true
-* test[=].action[=].operation.origin = 1
-* test[=].action[=].operation.responseId = "create-message-{type}"
-* test[=].action[=].operation.sourceId = "create-{type}-{number}" 
-*/
-
-
-
-
-
-
-
-
-
-
-
-
 
 RuleSet: operationDeleteSetup(destinationUri)
 * setup[+].action[+].operation.type.system = "http://terminology.hl7.org/CodeSystem/testscript-operation-codes"

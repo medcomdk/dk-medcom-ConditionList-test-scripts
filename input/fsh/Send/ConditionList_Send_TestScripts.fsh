@@ -8,7 +8,7 @@ Description: "Validate basic structure definition validity. In this script, only
 * title = "Send: ConditionList Testscript Singular Condition StructureDefinition Validity"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/Singular-Condition-Basic-StructureDefinition-Validity"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertOneCondition
 
 Instance: ConditionList_Testscript_Send-More-Than-One-Condition
@@ -21,7 +21,7 @@ Description: "Validate that more that one entry with resource type Condition is 
 * title = "Send: Conditionlist Testscript Send More Than One Condition"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/More-Than-One-Condition"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertMoreThanOneCondition
 
 Instance: ConditionList_Testscript_Send-SKS-d-CodeExists
@@ -34,7 +34,7 @@ Description: "ConditionList where the SKS-d code exists"
 * title = "Send: ConditionList_Testscript_Send-SKS-d-Code"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/SKS-d-CodeExists"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertConditionCodeExistsSKS
 
 Instance: ConditionList_Testscript_Send-BundleTimestamp-Not-Equal-To-CompositionDate
@@ -47,7 +47,7 @@ Description: "Conditionlist where the Bundle timestamp is not equal to the compo
 * title = "Send: ConditionList_Testscript_Send-BundleTimestamp-Not-Equal-To-CompositionDate"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/BundleTimestamp-Not-Equal-To-CompositionDate"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertBundleTimestampNotEqualToCompositionDate
 
 Instance: ConditionList_Testscript_Send-onsetDateTime-Before-AbatementDateTime
@@ -60,7 +60,7 @@ Description: "Validate the onsetDateTime is before the abatementDateTime"
 * title = "Send: Conditionlist_Testscript_Send-onsetDateTime_before_AbatementDateTime"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/onsetDateTime-Before-AbatementDateTime"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertonsetDateTimeBeforeAbatementDateTime
 
 Instance: ConditionList_Testscript_Send-minimum-example
@@ -73,7 +73,7 @@ Description: "Create a minimum example as stated in the test protocol, teststep 
 * title = "Send: Conditionlist_Testscript_Send-minimum-example"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/minimum-example"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertOneCondition
 * insert assertConditionCodeExists
 * insert AssertConditionTextExists
@@ -90,7 +90,7 @@ Description: "ConditionList_Testscript_Send-NoteText-Not-Present"
 * title = "Send: ConditionList_Testscript_Send-NoteText-Not-Present"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/NoteText-Not-Present"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertNoteTextNotPresent
 
 Instance: ConditionList_Testscript_Send-Register-conditions-with-different-RecordedDates
@@ -103,7 +103,7 @@ Description: "Validate that the system under test can generate a ConditionList c
 * title = "Send: Conditionlist_Testscript_Send-Register-conditions-with-different-RecordedDates"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/Register-conditions-with-different-RecordedDates"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertConditionsHaveDifferentRecordedDates
 
 Instance: ConditionList_Testscript_Send-MultipleConditions-Unique-Timestamp
@@ -117,7 +117,7 @@ Description: "Validate Bundle.timestamp for a ConditionList with multiple condit
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/Multiple-Conditions-Unique-Timestamp"
 * name = "ConditionListTestScript"
 // Initialise the conditionlist, including operations.
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertMoreThanOneCondition
 * insert assertUniqueBundleTimeStamp
 
@@ -131,7 +131,7 @@ Description: "Validate condition id's for a condition list with multiple conditi
 * title = "Send: ConditionList Testscript Unique Condition Ids"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/Multiple-Conditions-Unique-Condition-Id"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertMoreThanOneCondition
 * insert assertNoDuplicateConditionId
 * insert assertNoDuplicateCondition
@@ -147,7 +147,7 @@ Description: "assertAbatementDate is equal to recordedDate"
 * title = "Send: ConditionList_Testscript_Send-AbatementDate-Equal-To-recordedDate"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/AbatementDate-Equal-To-recordedDate"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertOneCondition
 * insert assertAbatementDateTimeEqualTorecordedDate
 
@@ -162,7 +162,7 @@ Description: "Validate no existance of abatement date"
 * title = "Send: ConditionList_Testscript_Send-No-AbatementDate-Exists"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/No-AbatementDate-Exists"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertAbatementDateNotExists
 
 
@@ -176,7 +176,7 @@ Description: "Validate no existance of onsetDateTime"
 * title = "Send: ConditionList_Testscript_Send-No-onsetDateTime-Exists"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/No-onsetDateTime-Exists"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertOnsetDateNotExists
 
 Instance: ConditionList_Testscript_Send-onsetDateTime-is-before-recordedDate
@@ -189,7 +189,7 @@ Description: "Validate the onsetDateTime is before the recordedDate"
 * title = "Send: ConditionList_Testscript_onsetDateTime-is-before-recordedDate"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/onsetDateTime-is-before-recordedDate"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertonsetDateTimeBeforerecordedDate
 
 Instance: ConditionList_Testscript_Send-onsetDateTime-is-equal-to-recordedDate
@@ -202,5 +202,5 @@ Description: "Validate the onsetDateTime is equal to the recordedDate"
 * title = "Send: ConditionList_Testscript_onsetDateTime-is-equal-to-recordedDate"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/onsetDateTime-is-equal-to-recordedDate"
 * name = "ConditionListTestScript"
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 * insert assertonsetDateTimeEqualTorecordedDate

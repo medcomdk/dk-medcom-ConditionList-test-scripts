@@ -10,7 +10,7 @@ Description: "ConditionList_Testscript_Send-Create and send a maximum test examp
 
 
 // Initialise the conditionlist, including operations.
-* insert InitialzeConditionList(CList, 01, /FHIRSandbox/MedCom/ConditionListRCH/draft/fixtures/fixtures.json)
+* insert InitialzeConditionList(CList, 01, ./fixtures/fixtures.json)
 
 
 // Asserts

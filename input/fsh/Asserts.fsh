@@ -158,10 +158,16 @@ RuleSet: assertConditionCodeIncludeDisplayICPC2
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.31').display.count() = Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.31').count()" //Bør vi fjerne denne, da vi ikke skal teste display?
 * test[=].action[=].assert.warningOnly  = true
 
-RuleSet: assertDiagnosisStatusCurrent
+RuleSet: assertDiagnosisStatusCurrent //Not used in Touchstone, replaced by assertDiagnosisStatusResolved
 * test[=].action[+].assert.description  = "Validate the existance of category:status system = http://snomed.info/sct, code = 15240007 and display = current"
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system = 'http://snomed.info/sct' and code = '15240007').exists()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertDiagnosisStatusResolved 
+* test[=].action[+].assert.description  = "Validate the existance of category:status system = http://snomed.info/sct and code = 723506003"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system = 'http://snomed.info/sct' and code = '723506003').exists()"
 * test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertDiagnosisTypeEncounterDiagnosis

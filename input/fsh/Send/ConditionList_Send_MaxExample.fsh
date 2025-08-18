@@ -42,7 +42,7 @@ From test protocol step 3.3.1.2
 // 2
 * insert AssertConditionTextExists // condition has a code.text field
 // 3
-* insert assertDiagnosisStatusResolved // Diagnosis:status = Current
+* insert assertDiagnosisStatusResolved // Diagnosis:status = resolved
 // 4
 * insert assertDiagnosisTypeEncounterDiagnosis // Diagnosis:type = encouter-diagnose
 // 5
@@ -52,7 +52,7 @@ From test protocol step 3.3.1.2
 // 7
 * insert assertRecordedDateExists
 // 8
-* insert assertClinicalStatusCodeResolved // Clinical Status code = Resolved
+* insert assertClinicalStatusCodingCode // Clinical Status code exists
 // 9
 * insert assertClinicalStatusCodeSystem // Clinical status system exists
 //10

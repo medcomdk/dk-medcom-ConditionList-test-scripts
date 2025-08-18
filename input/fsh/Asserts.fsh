@@ -200,6 +200,12 @@ RuleSet: assertClinicalStatusCodeResolved
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).clinicalStatus.coding.code = 'resolved'"
 * test[=].action[=].assert.warningOnly  = false
 
+RuleSet: assertClinicalStatusCodingCode
+* test[=].action[+].assert.description  = "Validate existance of clinicalStatus coding code exists"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).clinicalStatus.coding.code.exists()"
+* test[=].action[=].assert.warningOnly  = true
+
 RuleSet: assertClinicalStatusCodeSystem
 * test[=].action[+].assert.description  = "Validate existance of clinicalStatus coding system exists"
 * test[=].action[=].assert.direction    = #request

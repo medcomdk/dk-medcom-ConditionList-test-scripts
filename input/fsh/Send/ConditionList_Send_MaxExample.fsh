@@ -44,7 +44,7 @@ From test protocol step 3.3.1.2
 // 3
 * insert assertDiagnosisStatusResolved // Diagnosis:status = resolved
 // 4
-* insert assertDiagnosisTypeEncounterDiagnosis // Diagnosis:type = encouter-diagnose
+* insert assertDiagnosisTypeProblemListItem // Diagnosis:type = problem-list-item
 // 5
 * insert assertOnsetDateExists
 // 6

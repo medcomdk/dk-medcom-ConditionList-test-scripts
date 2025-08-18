@@ -176,6 +176,12 @@ RuleSet: assertDiagnosisTypeEncounterDiagnosis
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system = 'http://terminology.hl7.org/CodeSystem/condition-category' and code = 'encounter-diagnosis' ).exists()"
 * test[=].action[=].assert.warningOnly  = false
 
+RuleSet: assertDiagnosisTypeProblemListItem
+* test[=].action[+].assert.description  = "Validate existance of category:type and that system = http://terminology.hl7.org/CodeSystem/condition-category and code = problem-list-item"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system = 'http://terminology.hl7.org/CodeSystem/condition-category' and code = 'problem-list-item' ).exists()"
+* test[=].action[=].assert.warningOnly  = false
+
 RuleSet: assertOnsetDateExists
 * test[=].action[+].assert.description  = "Validate existance of onsetDateTime"
 * test[=].action[=].assert.direction    = #request

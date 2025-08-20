@@ -3,7 +3,7 @@ InstanceOf: TestScript
 Description: "ConditionList_Testscript_Send-Create and send a maximum test example"
 * insert Metadata
 * id = "maximum-example"
-* description = "Validate that a ConditionList contains a condition with all content, including optional, present and that these elements specifically contains: category:status = 15240007 (current), category:type = encounter-diagnosis, clinicalStatus = resolved. No note (DA: Tillægstekst) must be present."
+* description = "Validate that a ConditionList contains a condition with all content, including optional, present and that these elements specifically contains: category:status = 723506003 (resolved), category:type = encounter-diagnosis, clinicalStatus = resolved. No note (DA: Tillægstekst) must be present."
 * title = "Send: ConditionList_Testscript_Send-max-example"
 * url = "http://medcomfhir.dk/ig/conditionlisttestscript/maximum-example"
 * name = "ConditionListTestScript"
@@ -42,9 +42,9 @@ From test protocol step 3.3.1.2
 // 2
 * insert AssertConditionTextExists // condition has a code.text field
 // 3
-* insert assertDiagnosisStatusCurrent // Diagnosis:status = Current
+* insert assertDiagnosisStatusResolved // Diagnosis:status = resolved
 // 4
-* insert assertDiagnosisTypeEncounterDiagnosis // Diagnosis:type = encouter-diagnose
+* insert assertDiagnosisTypeProblemListItem // Diagnosis:type = problem-list-item
 // 5
 * insert assertOnsetDateExists
 // 6
@@ -52,7 +52,7 @@ From test protocol step 3.3.1.2
 // 7
 * insert assertRecordedDateExists
 // 8
-* insert assertClinicalStatusCodeResolved // Clinical Status code = Resolved
+* insert assertClinicalStatusCodingCode // Clinical Status code exists
 // 9
 * insert assertClinicalStatusCodeSystem // Clinical status system exists
 //10

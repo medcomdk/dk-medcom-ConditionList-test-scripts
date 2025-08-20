@@ -158,16 +158,28 @@ RuleSet: assertConditionCodeIncludeDisplayICPC2
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.31').display.count() = Bundle.entry.resource.ofType(Condition).code.coding.where(system = 'urn:oid:1.2.208.176.2.31').count()" //Bør vi fjerne denne, da vi ikke skal teste display?
 * test[=].action[=].assert.warningOnly  = true
 
-RuleSet: assertDiagnosisStatusCurrent
+RuleSet: assertDiagnosisStatusCurrent //Not used in Touchstone, replaced by assertDiagnosisStatusResolved
 * test[=].action[+].assert.description  = "Validate the existance of category:status system = http://snomed.info/sct, code = 15240007 and display = current"
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system = 'http://snomed.info/sct' and code = '15240007').exists()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertDiagnosisStatusResolved 
+* test[=].action[+].assert.description  = "Validate the existance of category:status system = http://snomed.info/sct and code = 723506003"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system = 'http://snomed.info/sct' and code = '723506003').exists()"
 * test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertDiagnosisTypeEncounterDiagnosis
 * test[=].action[+].assert.description  = "Validate existance of category:type and that system = http://terminology.hl7.org/CodeSystem/condition-category and code = encounter-diagnosis"
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system = 'http://terminology.hl7.org/CodeSystem/condition-category' and code = 'encounter-diagnosis' ).exists()"
+* test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertDiagnosisTypeProblemListItem
+* test[=].action[+].assert.description  = "Validate existance of category:type and that system = http://terminology.hl7.org/CodeSystem/condition-category and code = problem-list-item"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).category.coding.where(system = 'http://terminology.hl7.org/CodeSystem/condition-category' and code = 'problem-list-item' ).exists()"
 * test[=].action[=].assert.warningOnly  = false
 
 RuleSet: assertOnsetDateExists
@@ -193,6 +205,12 @@ RuleSet: assertClinicalStatusCodeResolved
 * test[=].action[=].assert.direction    = #request
 * test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).clinicalStatus.coding.code = 'resolved'"
 * test[=].action[=].assert.warningOnly  = false
+
+RuleSet: assertClinicalStatusCodingCode
+* test[=].action[+].assert.description  = "Validate existance of clinicalStatus coding code exists"
+* test[=].action[=].assert.direction    = #request
+* test[=].action[=].assert.expression   = "Bundle.entry.resource.ofType(Condition).clinicalStatus.coding.code.exists()"
+* test[=].action[=].assert.warningOnly  = true
 
 RuleSet: assertClinicalStatusCodeSystem
 * test[=].action[+].assert.description  = "Validate existance of clinicalStatus coding system exists"
